@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* D3 StoryLab Visual System Core Colors */
+  --d3-ink:           #0D0C0A;
+  --d3-paper:         #EDE9E1;
+
+  /* Neutral Ramp */
+  --d3-neutral-900:   #161512;
+  --d3-neutral-850:   #1B1916;
+  --d3-neutral-800:   #211F1C;
+  --d3-neutral-700:   #2B2824; /* Primary Border */
+  --d3-neutral-600:   #4A453E; /* Hover Border */
+  --d3-neutral-500:   #7A736A; /* Secondary Text */
+  --d3-neutral-400:   #A8A196; /* Muted Text */
+  --d3-neutral-300:   #D4CFC4; /* Main Body */
+
+  /* Accents */
+  --d3-amber:         #C9A46B;
+  --d3-amber-glow:    rgba(201, 164, 107, 0.14);
+  --d3-rust:          #8C4A3D;
+  --d3-cyan-muted:    #5E9CA8;
+}
+
+body {
+  color: var(--d3-neutral-300);
+  background-color: var(--d3-ink);
+  font-family: var(--font-archivo), -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle Cinematic Film Grain Overlay */
+.d3-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Dark Console Panels */
+.d3-panel {
+  background-color: var(--d3-neutral-900);
+  border: 1px solid var(--d3-neutral-700);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+.d3-panel-subtle {
+  background-color: var(--d3-neutral-850);
+  border: 1px solid var(--d3-neutral-700);
+}
+
+/* Amber Accents & Restrained Glows */
+.d3-amber-glow {
+  box-shadow: 0 0 16px var(--d3-amber-glow);
+}
+
+.d3-amber-border {
+  border-color: var(--d3-amber);
+}
+
+/* Custom D3 Console Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--d3-neutral-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--d3-neutral-700);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--d3-neutral-600);
+}

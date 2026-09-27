@@ -1,0 +1,468 @@
+/**
+ * Open Library Instrument Catalog for D3 MusiQ (Phase 2)
+ * 
+ * Defines 8 core instruments across Carnatic, Western, and Electronic traditions.
+ * STRICT HONESTY POLICY:
+ * - "real_sample": Verified acoustic recordings (Salamander Grand Piano CC BY 3.0).
+ * - "synthesized_model": Algorithmic physical models; never claimed to be acoustic samples.
+ * - "analog_synth" / "digital_fm": Honest synthesizer instruments.
+ */
+
+import { LibraryInstrument } from "./types";
+export * from "./types";
+
+export const LIBRARY_INSTRUMENTS: LibraryInstrument[] = [
+  // 1. Concert Grand Piano (Real Multi-Sample)
+  {
+    id: "piano",
+    name: "Concert Grand Piano",
+    shortName: "Grand Piano",
+    category: "Keyboard",
+    style: "Western Classical",
+    engineType: "sampler",
+    soundSourceType: "real_sample",
+    sourceLabel: "Real Acoustic Multi-Sample",
+    sourceDetails: "Authentic acoustic recordings captured from a Yamaha C5 grand piano across 16 dynamic velocity layers by Alexander Holm. Streamed via Tone.Sampler CDN with synthesized fallback.",
+    provenance: "Alexander Holm / Salamander Grand Piano",
+    license: "CC BY 3.0",
+    description: "Acoustic grand piano multi-sampled across dynamic velocity layers with natural string resonance.",
+    tags: ["Acoustic", "Multi-sampled", "Grand Piano", "Keyboard", "Western Classical"],
+    defaultOctave: 4,
+    previewPitch: "C4",
+    icon: "Piano",
+    notesCatalog: [
+      { pitch: "C3", degree: "1", octave: 3 },
+      { pitch: "E3", degree: "3", octave: 3 },
+      { pitch: "G3", degree: "5", octave: 3 },
+      { pitch: "B3", degree: "7", octave: 3 },
+      { pitch: "C4", degree: "1", octave: 4 },
+      { pitch: "D4", degree: "2", octave: 4 },
+      { pitch: "E4", degree: "3", octave: 4 },
+      { pitch: "F#4", degree: "♯4", octave: 4 },
+      { pitch: "G4", degree: "5", octave: 4 },
+      { pitch: "A4", degree: "6", octave: 4 },
+      { pitch: "B4", degree: "7", octave: 4 },
+      { pitch: "C5", degree: "8", octave: 5 },
+    ],
+    articulations: [
+      { id: "sustain", name: "Sustain", description: "Open damper pedal with natural acoustic decay", isSimulated: false },
+      { id: "staccato", name: "Staccato", description: "Crisp, muted key release with transient hammer knock", isSimulated: true },
+    ],
+    phrases: [
+      {
+        id: "piano-arpeggio",
+        name: "Yaman Triad Arpeggio",
+        description: "Ascending C4 → E4 → G4 → B4 harmonic arpeggio",
+        tempoBpm: 110,
+        notes: [
+          { step: 0, pitch: "C4", swara: "S", duration: 2, velocity: 0.8 },
+          { step: 4, pitch: "E4", swara: "G3", duration: 2, velocity: 0.85 },
+          { step: 8, pitch: "G4", swara: "P", duration: 2, velocity: 0.9 },
+          { step: 12, pitch: "B4", swara: "N3", duration: 2, velocity: 0.85 },
+        ],
+      },
+      {
+        id: "piano-ascent",
+        name: "Ascending Cadence",
+        description: "D2 → N3 → S' leading into upper tonic resolution",
+        tempoBpm: 110,
+        notes: [
+          { step: 10, pitch: "A4", swara: "D2", duration: 2, velocity: 0.8 },
+          { step: 12, pitch: "B4", swara: "N3", duration: 2, velocity: 0.9 },
+          { step: 14, pitch: "C5", swara: "S'", duration: 2, velocity: 0.95 },
+        ],
+      },
+    ],
+    samplerConfig: {
+      baseUrl: "https://tonejs.github.io/audio/salamander/",
+      sampleMap: {
+        A1: "A1.mp3",
+        A2: "A2.mp3",
+        C3: "C3.mp3",
+        "D#3": "Ds3.mp3",
+        "F#3": "Fs3.mp3",
+        A3: "A3.mp3",
+        C4: "C4.mp3",
+        "D#4": "Ds4.mp3",
+        "F#4": "Fs4.mp3",
+        A4: "A4.mp3",
+        C5: "C5.mp3",
+        "D#5": "Ds5.mp3",
+        "F#5": "Fs5.mp3",
+        A5: "A5.mp3",
+        C6: "C6.mp3",
+      },
+    },
+  },
+
+  // 2. Saraswati Veena (Synthesized Physical Model)
+  {
+    id: "pluck",
+    name: "Saraswati Veena",
+    shortName: "Veena",
+    category: "String",
+    style: "Carnatic / Indian Classical",
+    engineType: "synth",
+    soundSourceType: "synthesized_model",
+    sourceLabel: "Synthesized Model (Physical Pluck)",
+    sourceDetails: "Subtractive acoustic modeling approximating bronze plectrum transients on curved brass frets. Genuine Veena studio multi-samples are planned for Phase 6 sound archive expansion.",
+    provenance: "D3 MusiQ Acoustic Modeling Engine",
+    license: "MIT",
+    description: "Snappy metallic pluck transient with acoustic sympathetic resonance, tailored for Carnatic swaras.",
+    tags: ["Carnatic", "Acoustic Modeling", "Plucked", "Veena", "Indian Classical"],
+    defaultOctave: 4,
+    previewPitch: "G4",
+    icon: "Zap",
+    notesCatalog: [
+      { pitch: "C4", swara: "S", degree: "1", octave: 4 },
+      { pitch: "D4", swara: "R2", degree: "2", octave: 4 },
+      { pitch: "E4", swara: "G3", degree: "3", octave: 4 },
+      { pitch: "F#4", swara: "M2", degree: "♯4", octave: 4 },
+      { pitch: "G4", swara: "P", degree: "5", octave: 4 },
+      { pitch: "A4", swara: "D2", degree: "6", octave: 4 },
+      { pitch: "B4", swara: "N3", degree: "7", octave: 4 },
+      { pitch: "C5", swara: "S'", degree: "8", octave: 5 },
+    ],
+    articulations: [
+      { id: "pluck", name: "Standard Pluck", description: "Snappy wire plectrum strike with rapid harmonic decay", isSimulated: true },
+      { id: "tremolo", name: "Jhala Pluck", description: "Rhythmic continuous drone plucks on auxiliary chikari strings", isSimulated: true },
+    ],
+    phrases: [
+      {
+        id: "veena-yaman-sanchara",
+        name: "Yaman Sanchara",
+        description: "G3 → M2 → P characteristic melodic phrase with authentic teevra ma emphasis",
+        tempoBpm: 110,
+        notes: [
+          { step: 2, pitch: "E4", swara: "G3", duration: 2, velocity: 0.85 },
+          { step: 4, pitch: "F#4", swara: "M2", duration: 2, velocity: 0.95 },
+          { step: 6, pitch: "G4", swara: "P", duration: 4, velocity: 0.9 },
+        ],
+      },
+      {
+        id: "veena-ascent",
+        name: "Ascending Sanchara",
+        description: "D2 → N3 → S' upper octave resolution",
+        tempoBpm: 110,
+        notes: [
+          { step: 8, pitch: "A4", swara: "D2", duration: 2, velocity: 0.8 },
+          { step: 10, pitch: "B4", swara: "N3", duration: 2, velocity: 0.9 },
+          { step: 12, pitch: "C5", swara: "S'", duration: 4, velocity: 0.95 },
+        ],
+      },
+    ],
+  },
+
+  // 3. Classical Tabla (Synthesized Physical Model)
+  {
+    id: "tabla",
+    name: "Classical Tabla",
+    shortName: "Tabla",
+    category: "Percussion",
+    style: "Carnatic / Indian Classical",
+    engineType: "percussion",
+    soundSourceType: "synthesized_model",
+    sourceLabel: "Synthesized Model (Physical Percussion)",
+    sourceDetails: "Physical percussion modeling combining membrane pitch-drop physics (Bayan bass glide) and metallic center resonances (Dayan center ring). Real studio recordings will follow in Phase 6.",
+    provenance: "D3 MusiQ Percussion Synthesis",
+    license: "MIT",
+    description: "Traditional Indian hand drum pair (Bayan bass & Dayan treble) with classical bols.",
+    tags: ["Percussion", "Carnatic", "Hindustani", "Rhythm", "Bols"],
+    defaultOctave: 4,
+    previewPitch: "C4",
+    icon: "Disc",
+    notesCatalog: [
+      { pitch: "C4", bol: "Dha", degree: "Bass+Treble", octave: 4 },
+      { pitch: "D4", bol: "Dhin", degree: "Ringing Bass", octave: 4 },
+      { pitch: "E4", bol: "Ge", degree: "Bass Glide", octave: 4 },
+      { pitch: "F#4", bol: "Na", degree: "Rim Strike", octave: 4 },
+      { pitch: "G4", bol: "Tin", degree: "Center Tone", octave: 4 },
+      { pitch: "A4", bol: "Ka", degree: "Flat Slap", octave: 4 },
+    ],
+    articulations: [
+      { id: "open", name: "Khula (Open)", description: "Resonant ringing strokes allowing skins to vibrate freely", isSimulated: true },
+      { id: "closed", name: "Bandha (Closed)", description: "Damped flat-hand palm slaps and muted rim strikes", isSimulated: true },
+    ],
+    phrases: [
+      {
+        id: "tabla-theka-teental",
+        name: "Teental 16-Beat Theka",
+        description: "Dha Dhin Dhin Dha | Dha Dhin Dhin Dha | Dha Tin Tin Ta | Ta Dhin Dhin Dha",
+        tempoBpm: 110,
+        notes: [
+          { step: 0, pitch: "C4", bol: "Dha", duration: 1, velocity: 0.9 },
+          { step: 2, pitch: "D4", bol: "Dhin", duration: 1, velocity: 0.8 },
+          { step: 4, pitch: "D4", bol: "Dhin", duration: 1, velocity: 0.8 },
+          { step: 6, pitch: "C4", bol: "Dha", duration: 1, velocity: 0.9 },
+          { step: 8, pitch: "C4", bol: "Dha", duration: 1, velocity: 0.9 },
+          { step: 10, pitch: "D4", bol: "Dhin", duration: 1, velocity: 0.8 },
+          { step: 12, pitch: "D4", bol: "Dhin", duration: 1, velocity: 0.8 },
+          { step: 14, pitch: "C4", bol: "Dha", duration: 1, velocity: 0.9 },
+        ],
+      },
+    ],
+    percussionPads: [
+      { id: "dha", name: "Dha", strokeName: "Bayan + Dayan", description: "Resonant open bass and treble combined stroke", pitchMapping: "C4" },
+      { id: "dhin", name: "Dhin", strokeName: "Bayan + Dayan Ring", description: "Ringing open stroke with deep resonance", pitchMapping: "D4" },
+      { id: "ge", name: "Ge / Ghe", strokeName: "Bayan Bass Glide", description: "Deep pitch-modulating Bayan bass stroke", pitchMapping: "E4" },
+      { id: "na", name: "Na / Ta", strokeName: "Dayan Rim Strike", description: "Crisp, bright Dayan metallic rim stroke", pitchMapping: "F#4" },
+      { id: "tin", name: "Tin", strokeName: "Dayan Center Ring", description: "Pure bell-like center tone on Dayan", pitchMapping: "G4" },
+      { id: "ka", name: "Ka / Kat", strokeName: "Flat Palm Slap", description: "Damped flat-hand non-resonant slap", pitchMapping: "A4" },
+    ],
+  },
+
+  // 4. Bansuri Flute (Synthesized Physical Model)
+  {
+    id: "flute",
+    name: "Bansuri Flute",
+    shortName: "Bansuri",
+    category: "Woodwind",
+    style: "Carnatic / Indian Classical",
+    engineType: "synth",
+    soundSourceType: "synthesized_model",
+    sourceLabel: "Synthesized Model (Breathy Woodwind)",
+    sourceDetails: "Pure sinusoidal acoustic modeling with gentle breath transient and portamento gliding, simulating bamboo flute embouchure.",
+    provenance: "D3 MusiQ Aerophone Synthesis",
+    license: "MIT",
+    description: "Warm, breathy Indian bamboo flute tone with gentle acoustic vibrato and harmonic overtones.",
+    tags: ["Wind", "Flute", "Bansuri", "Carnatic", "Melody"],
+    defaultOctave: 4,
+    previewPitch: "E4",
+    icon: "Wind",
+    notesCatalog: [
+      { pitch: "C4", swara: "S", degree: "1", octave: 4 },
+      { pitch: "D4", swara: "R2", degree: "2", octave: 4 },
+      { pitch: "E4", swara: "G3", degree: "3", octave: 4 },
+      { pitch: "F#4", swara: "M2", degree: "♯4", octave: 4 },
+      { pitch: "G4", swara: "P", degree: "5", octave: 4 },
+      { pitch: "A4", swara: "D2", degree: "6", octave: 4 },
+      { pitch: "B4", swara: "N3", degree: "7", octave: 4 },
+      { pitch: "C5", swara: "S'", degree: "8", octave: 5 },
+    ],
+    articulations: [
+      { id: "soft", name: "Meend Glide", description: "Smooth vocal-like pitch contour between finger holes", isSimulated: true },
+      { id: "staccato", name: "Tongued", description: "Short breath attack transient", isSimulated: true },
+    ],
+    phrases: [
+      {
+        id: "bansuri-soft-motif",
+        name: "Morning Breeze Motif",
+        description: "Breathy Yaman motif: G3 → M2 → P → G3",
+        tempoBpm: 110,
+        notes: [
+          { step: 4, pitch: "E4", swara: "G3", duration: 2, velocity: 0.8 },
+          { step: 6, pitch: "F#4", swara: "M2", duration: 2, velocity: 0.85 },
+          { step: 8, pitch: "G4", swara: "P", duration: 3, velocity: 0.9 },
+          { step: 12, pitch: "E4", swara: "G3", duration: 3, velocity: 0.75 },
+        ],
+      },
+    ],
+  },
+
+  // 5. Acoustic Violin (Synthesized Physical Model)
+  {
+    id: "violin",
+    name: "Acoustic Violin",
+    shortName: "Violin",
+    category: "String",
+    style: "Western Classical",
+    engineType: "synth",
+    soundSourceType: "synthesized_model",
+    sourceLabel: "Synthesized Model (Bowed String)",
+    sourceDetails: "Harmonic sawtooth string model with low-pass filtering and subtle vibrato envelope, simulating classical violin bowing.",
+    provenance: "D3 MusiQ Chordophone Synthesis",
+    license: "MIT",
+    description: "Expressive bowed violin string tone with natural vibrato contour, bridging Western and Carnatic phrasing.",
+    tags: ["String", "Violin", "Bowed", "Western Classical", "Carnatic"],
+    defaultOctave: 4,
+    previewPitch: "A4",
+    icon: "Music",
+    notesCatalog: [
+      { pitch: "G3", degree: "Low G", octave: 3 },
+      { pitch: "C4", swara: "S", degree: "1", octave: 4 },
+      { pitch: "D4", swara: "R2", degree: "2", octave: 4 },
+      { pitch: "E4", swara: "G3", degree: "3", octave: 4 },
+      { pitch: "F#4", swara: "M2", degree: "♯4", octave: 4 },
+      { pitch: "G4", swara: "P", degree: "5", octave: 4 },
+      { pitch: "A4", swara: "D2", degree: "6", octave: 4 },
+      { pitch: "B4", swara: "N3", degree: "7", octave: 4 },
+      { pitch: "C5", swara: "S'", degree: "8", octave: 5 },
+    ],
+    articulations: [
+      { id: "legato", name: "Legato Bow", description: "Smooth continuous bow movement with vocal-like transitions", isSimulated: true },
+      { id: "spiccato", name: "Detache", description: "Separated individual bow strokes with fast transient", isSimulated: true },
+    ],
+    phrases: [
+      {
+        id: "violin-cinematic-lead",
+        name: "Cinematic Swara Lead",
+        description: "Expressive sustained violin passage weaving through G3 and Nishada",
+        tempoBpm: 110,
+        notes: [
+          { step: 2, pitch: "E4", swara: "G3", duration: 3, velocity: 0.8 },
+          { step: 6, pitch: "G4", swara: "P", duration: 3, velocity: 0.85 },
+          { step: 10, pitch: "B4", swara: "N3", duration: 2, velocity: 0.9 },
+          { step: 12, pitch: "C5", swara: "S'", duration: 4, velocity: 0.95 },
+        ],
+      },
+    ],
+  },
+
+  // 6. Acoustic Guitar (Synthesized Physical Model)
+  {
+    id: "guitar",
+    name: "Acoustic Guitar",
+    shortName: "Guitar",
+    category: "String",
+    style: "Western Classical",
+    engineType: "synth",
+    soundSourceType: "synthesized_model",
+    sourceLabel: "Synthesized Model (Nylon Pluck)",
+    sourceDetails: "Triangle-saw acoustic modeling with fast finger-pluck transient and wooden soundboard resonance decay.",
+    provenance: "D3 MusiQ Chordophone Synthesis",
+    license: "MIT",
+    description: "Warm nylon string acoustic guitar with fingerstyle attack and woody body sustain.",
+    tags: ["Guitar", "Acoustic", "Plucked", "String", "Folk"],
+    defaultOctave: 3,
+    previewPitch: "E3",
+    icon: "Zap",
+    notesCatalog: [
+      { pitch: "E3", degree: "Low E", octave: 3 },
+      { pitch: "A3", degree: "A", octave: 3 },
+      { pitch: "C4", degree: "C4", octave: 4 },
+      { pitch: "E4", degree: "E4", octave: 4 },
+      { pitch: "G4", degree: "G4", octave: 4 },
+      { pitch: "B4", degree: "B4", octave: 4 },
+    ],
+    articulations: [
+      { id: "fingerstyle", name: "Fingerstyle", description: "Soft fleshy fingertip pluck on nylon string", isSimulated: true },
+      { id: "rest_stroke", name: "Rest Stroke", description: "Firm accented plectrum pluck with maximum acoustic volume", isSimulated: true },
+    ],
+    phrases: [
+      {
+        id: "guitar-arpeggio",
+        name: "Folk Acoustic Downbeats",
+        description: "Gentle rhythmic picking anchoring beats 1, 5, 9, 13",
+        tempoBpm: 110,
+        notes: [
+          { step: 0, pitch: "C3", swara: "S", duration: 2, velocity: 0.85 },
+          { step: 4, pitch: "G3", swara: "P", duration: 2, velocity: 0.8 },
+          { step: 8, pitch: "C4", swara: "S", duration: 2, velocity: 0.85 },
+          { step: 12, pitch: "G3", swara: "P", duration: 2, velocity: 0.8 },
+        ],
+      },
+    ],
+  },
+
+  // 7. Atmospheric Pad (Subtractive Analog Synthesizer)
+  {
+    id: "poly",
+    name: "Atmospheric Pad",
+    shortName: "Atmosphere",
+    category: "Electronic",
+    style: "Modern Electronic",
+    engineType: "synth",
+    soundSourceType: "analog_synth",
+    sourceLabel: "Subtractive Synthesizer (Analog Texture)",
+    sourceDetails: "Dual detuned triangle wave oscillators with smooth 24dB low-pass filter sweep and lush stereo release. Pure analog synthesis.",
+    provenance: "D3 MusiQ Analog Subtractive Engine",
+    license: "MIT",
+    description: "Warm analog sustained pad with smooth filter sweep, providing cinematic foundation.",
+    tags: ["Synth", "Subtractive", "Warm", "Polyphonic", "Atmosphere", "Pad"],
+    defaultOctave: 4,
+    previewPitch: "C4",
+    icon: "Layers",
+    notesCatalog: [
+      { pitch: "C3", swara: "S", degree: "1", octave: 3 },
+      { pitch: "G3", swara: "P", degree: "5", octave: 3 },
+      { pitch: "C4", swara: "S", degree: "1", octave: 4 },
+      { pitch: "E4", swara: "G3", degree: "3", octave: 4 },
+      { pitch: "G4", swara: "P", degree: "5", octave: 4 },
+      { pitch: "B4", swara: "N3", degree: "7", octave: 4 },
+    ],
+    articulations: [
+      { id: "slow", name: "Slow Swell", description: "Gradual crescendo envelope opening over 2 seconds", isSimulated: false },
+      { id: "pad", name: "Sustained Bed", description: "Steady harmonic foundation with subtle chorus", isSimulated: false },
+    ],
+    phrases: [
+      {
+        id: "atmosphere-drone",
+        name: "Tonic & Pa Sa-Pa Drone",
+        description: "Sustained root C4 and fifth G4 drone across 16 steps",
+        tempoBpm: 110,
+        notes: [
+          { step: 0, pitch: "C4", swara: "S", duration: 16, velocity: 0.65 },
+          { step: 0, pitch: "G4", swara: "P", duration: 16, velocity: 0.55 },
+        ],
+      },
+    ],
+  },
+
+  // 8. 808 Rhythm Kit (Analog Transistor Circuit Emulation)
+  {
+    id: "beats",
+    name: "808 Rhythm Kit",
+    shortName: "808 Kit",
+    category: "Percussion",
+    style: "Modern Electronic",
+    engineType: "percussion",
+    soundSourceType: "analog_synth",
+    sourceLabel: "Analog Drum Synthesizer (Transistor Circuit)",
+    sourceDetails: "Emulation of vintage transistor-based drum machine circuits: deep sub-bass sine kick, tuned bandpass noise snare, and metallic cymbal ring.",
+    provenance: "D3 MusiQ Analog Percussion Engine",
+    license: "MIT",
+    description: "Punchy analog drum machine kit with deep sub-bass kick and crisp snares.",
+    tags: ["Electronic", "808", "Drums", "Kick", "Snare", "Hi-Hat"],
+    defaultOctave: 4,
+    previewPitch: "C4",
+    icon: "Radio",
+    notesCatalog: [
+      { pitch: "C4", bol: "Kick", degree: "Sub Bass", octave: 4 },
+      { pitch: "D4", bol: "Snare", degree: "Noise", octave: 4 },
+      { pitch: "E4", bol: "Hat (Cl)", degree: "Closed", octave: 4 },
+      { pitch: "F#4", bol: "Hat (Op)", degree: "Open", octave: 4 },
+      { pitch: "G4", bol: "Clap", degree: "Burst", octave: 4 },
+      { pitch: "A4", bol: "Rim", degree: "Click", octave: 4 },
+    ],
+    articulations: [
+      { id: "punchy", name: "Standard Hit", description: "Fast transient trigger with sharp envelope punch", isSimulated: false },
+    ],
+    phrases: [
+      {
+        id: "beats-groove",
+        name: "Sub Kick & Snare Beat",
+        description: "Kick on 1 & 9, snare on 5 & 13 with driving groove",
+        tempoBpm: 110,
+        notes: [
+          { step: 0, pitch: "C4", bol: "Kick", duration: 1, velocity: 0.9 },
+          { step: 4, pitch: "D4", bol: "Snare", duration: 1, velocity: 0.85 },
+          { step: 8, pitch: "C4", bol: "Kick", duration: 1, velocity: 0.9 },
+          { step: 12, pitch: "D4", bol: "Snare", duration: 1, velocity: 0.85 },
+        ],
+      },
+    ],
+    percussionPads: [
+      { id: "kick", name: "Sub Kick", strokeName: "808 Low Bass", description: "Deep sub-harmonic punchy kick", pitchMapping: "C4" },
+      { id: "snare", name: "Snare", strokeName: "Crisp Noise", description: "Sharp snappy analog snare drum", pitchMapping: "D4" },
+      { id: "hat_closed", name: "Closed Hat", strokeName: "Short Metallic", description: "Tight closed metallic hi-hat", pitchMapping: "E4" },
+      { id: "hat_open", name: "Open Hat", strokeName: "Sustained Shimmer", description: "Bright decaying open hi-hat", pitchMapping: "F#4" },
+      { id: "clap", name: "Handclap", strokeName: "Ensemble Burst", description: "Multi-burst analog handclap", pitchMapping: "G4" },
+      { id: "rim", name: "Rimshot", strokeName: "Woody Strike", description: "High-transient acoustic rimshot", pitchMapping: "A4" },
+    ],
+  },
+];
+
+export const STYLES_LIST = [
+  "Carnatic / Indian Classical",
+  "Western Classical",
+  "Modern Electronic",
+] as const;
+
+export const CATEGORIES_LIST = [
+  "String",
+  "Keyboard",
+  "Percussion",
+  "Electronic",
+  "Woodwind",
+  "Brass",
+] as const;
